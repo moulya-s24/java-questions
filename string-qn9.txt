@@ -1,0 +1,38 @@
+ public class PrimeNumberRange {
+    public static void main(String[] args) {
+        int start = 10;
+        int end = 50;
+
+        System.out.println("Prime numbers between " + start + " and " + end + ":");
+        printPrimesInRange(start, end);
+    }
+
+    public static void printPrimesInRange(int start, int end) {
+        int primeCount = 0;
+
+        for (int i = start; i <= end; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + " ");
+                primeCount++;
+            }
+        }
+        System.out.println();
+        System.out.println("Total prime numbers found: " + primeCount);
+    }
+
+    public static boolean isPrime(int n) {
+        // Numbers less than or equal to 1 are not prime
+        if (n <= 1) {
+            return false;
+        }
+
+        // Check for factors from 2 up to the square root of n
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}

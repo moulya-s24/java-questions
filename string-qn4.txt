@@ -1,0 +1,41 @@
+public class LongestWordFinder {
+    public static void main(String[] args) {
+        String sentence = "The quick brown fox jumps over the lazy dog";
+
+        String longestWord = findLongestWord(sentence);
+        System.out.println("The longest word is: " + longestWord);
+    }
+
+    public static String findLongestWord(String sentence) {
+        if (sentence == null || sentence.trim().isEmpty()) {
+            return "";
+        }
+
+        int n = sentence.length();
+        String longest = "";
+        String currentWord = "";
+
+        // Iterate through each character of the sentence
+        for (int i = 0; i < n; i++) {
+            char ch = sentence.charAt(i);
+
+            // If the character is not a space, build the current word
+            if (ch != ' ') {
+                currentWord += ch;
+            } else {
+                // When a space is hit, compare current word with the longest found so far
+                if (currentWord.length() > longest.length()) {
+                    longest = currentWord;
+                }
+                currentWord = ""; // Reset for the next word
+            }
+        }
+
+        // Check the last word since the sentence might not end with a space
+        if (currentWord.length() > longest.length()) {
+            longest = currentWord;
+        }
+
+        return longest;
+    }
+}

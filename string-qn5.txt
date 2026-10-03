@@ -1,0 +1,53 @@
+public class WordReverser {
+    public static void main(String[] args) {
+        String sentence = "The quick brown fox jumps";
+
+        String reversed = reverseWords(sentence);
+        System.out.println("Reversed words: \"" + reversed + "\"");
+    }
+
+    public static String reverseWords(String sentence) {
+        if (sentence == null || sentence.trim().isEmpty()) {
+            return sentence;
+        }
+
+        // Trim leading and trailing spaces to handle edge cases cleanly
+        sentence = sentence.trim();
+        int n = sentence.length();
+        
+        StringBuilder result = new StringBuilder();
+        String currentWord = "";
+
+        // Iterate backwards from the end of the sentence to the beginning
+        for (int i = n - 1; i >= 0; i--) {
+            char ch = sentence.charAt(i);
+
+            // If we hit a space, it means we've finished a word (from right to left)
+            if (ch == ' ') {
+                if (!currentWord.isEmpty()) {
+                    // Since we are moving backwards, reverse the accumulated word back to its correct form
+                    result.append(reverseString(currentWord)).append(" ");
+                    currentWord = "";
+                }
+            } else {
+                currentWord += ch;
+            }
+        }
+
+        // Append the very first word of the sentence
+        if (!currentWord.isEmpty()) {
+            result.append(reverseString(currentWord));
+        }
+
+        return result.toString();
+    }
+
+    // Helper method to reverse characters of a single word
+    private static String reverseString(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = s.length() - 1; i >= 0; i--) {
+            sb.append(s.charAt(i));
+        }
+        return sb.toString();
+    }
+}

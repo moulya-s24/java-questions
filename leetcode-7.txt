@@ -1,0 +1,36 @@
+public class ReshapeMatrix {
+    public static void main(String[] args) {
+        int[][] mat = {{1, 2}, {3, 4}};
+        int r = 1, c = 4;
+
+        int[][] reshaped = matrixReshape(mat, r, c);
+
+        System.out.println("Reshaped Matrix:");
+        for (int[] row : reshaped) {
+            for (int val : row) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static int[][] matrixReshape(int[][] mat, int r, int c) {
+        int m = mat.length;
+        int n = mat[0].length;
+
+        // Return original matrix if reshape is invalid
+        if (m * n != r * c) {
+            return mat;
+        }
+
+        int[][] result = new int[r][c];
+        int totalElements = m * n;
+
+        // Flat index mapping between 2D grids
+        for (int i = 0; i < totalElements; i++) {
+            result[i / c][i % c] = mat[i / n][i % n];
+        }
+
+        return result;
+    }
+}

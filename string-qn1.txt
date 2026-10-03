@@ -1,0 +1,37 @@
+public class AnagramChecker {
+    public static void main(String[] args) {
+        String str1 = "listen";
+        String str2 = "silent";
+
+        if (areAnagrams(str1, str2)) {
+            System.out.println("'" + str1 + "' and '" + str2 + "' are anagrams.");
+        } else {
+            System.out.println("'" + str1 + "' and '" + str2 + "' are not anagrams.");
+        }
+    }
+
+    public static boolean areAnagrams(String s1, String s2) {
+        // Step 1: If lengths differ, they cannot be anagrams
+        if (s1.length() != s2.length()) {
+            return false;
+        }
+
+        // Step 2: Frequency array for standard ASCII characters
+        int[] charCount = new int[256];
+
+        // Step 3: Increment counts for s1 and decrement counts for s2
+        for (int i = 0; i < s1.length(); i++) {
+            charCount[s1.charAt(i)]++;
+            charCount[s2.charAt(i)]--;
+        }
+
+        // Step 4: If all counts are zero, they are anagrams
+        for (int count : charCount) {
+            if (count != 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}

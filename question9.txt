@@ -1,0 +1,42 @@
+ import java.util.Arrays;
+
+public class TwoSumPair {
+    public static void main(String[] args) {
+        int[] arr = {10, 15, 3, 7};
+        int target = 17;
+
+        if (hasPairWithSum(arr, target)) {
+            System.out.println("Pair with given sum " + target + " exists.");
+        } else {
+            System.out.println("No pair with given sum " + target + " exists.");
+        }
+    }
+
+    public static boolean hasPairWithSum(int[] arr, int target) {
+        if (arr == null || arr.length < 2) {
+            return false;
+        }
+
+        // Step 1: Sort the array (O(n log n))
+        Arrays.sort(arr);
+
+        // Step 2: Use two pointers approach
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left < right) {
+            int currentSum = arr[left] + arr[right];
+
+            if (currentSum == target) {
+                System.out.println("Pair found: (" + arr[left] + ", " + arr[right] + ")");
+                return true;
+            } else if (currentSum < target) {
+                left++;  // We need a larger sum, move the left pointer right
+            } else {
+                right--; // We need a smaller sum, move the right pointer left
+            }
+        }
+
+        return false;
+    }
+}

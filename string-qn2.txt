@@ -1,0 +1,36 @@
+public class FirstUniqueCharacter {
+    public static void main(String[] args) {
+        String str = "swiss";
+
+        char result = findFirstNonRepeatingChar(str);
+
+        if (result != '\0') {
+            System.out.println("The first non-repeating character is: " + result);
+        } else {
+            System.out.println("There is no non-repeating character.");
+        }
+    }
+
+    public static char findFirstNonRepeatingChar(String str) {
+        if (str == null || str.isEmpty()) {
+            return '\0';
+        }
+
+        // Step 1: Frequency array for standard ASCII characters
+        int[] charCount = new int[256];
+
+        // Step 2: Count occurrences of each character
+        for (int i = 0; i < str.length(); i++) {
+            charCount[str.charAt(i)]++;
+        }
+
+        // Step 3: Find the first character with a frequency of 1
+        for (int i = 0; i < str.length(); i++) {
+            if (charCount[str.charAt(i)] == 1) {
+                return str.charAt(i);
+            }
+        }
+
+        return '\0'; // Return null character if no unique character is found
+    }
+}

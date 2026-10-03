@@ -1,0 +1,36 @@
+public class ElementFrequencyCounter {
+    public static void main(String[] args) {
+        int[] arr = {4, 3, 2, 7, 8, 2, 3, 1, 4, 3};
+
+        System.out.println("Element frequencies:");
+
+        // Loop through each element in the array
+        for (int i = 0; i < arr.length; i++) {
+            boolean alreadyCounted = false;
+
+            // Check if this element was already counted earlier in the array
+            for (int k = 0; k < i; k++) {
+                if (arr[k] == arr[i]) {
+                    alreadyCounted = true;
+                    break;
+                }
+            }
+
+            // If it has already been processed, skip it to avoid duplicate prints
+            if (alreadyCounted) {
+                continue;
+            }
+
+            // Count occurrences of arr[i] across the entire array
+            int count = 0;
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[j] == arr[i]) {
+                    count++;
+                }
+            }
+
+            // Print the element and its frequency
+            System.out.println(arr[i] + " occurs " + count + " time(s)");
+        }
+    }
+}

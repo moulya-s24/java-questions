@@ -1,0 +1,41 @@
+public class DecimalToBinaryConverter {
+    public static void main(String[] args) {
+        int decimal = 42;
+
+        String binary = convertToBinary(decimal);
+        System.out.println("Decimal " + decimal + " in binary is: " + binary);
+    }
+
+    public static String convertToBinary(int n) {
+        if (n == 0) {
+            return "0";
+        }
+
+        // Handle negative numbers using two's complement for a 32-bit integer
+        if (n < 0) {
+            return convertNegativeToBinary(n);
+        }
+
+        StringBuilder binary = new StringBuilder();
+
+        // Repeated division by 2, extracting remainders
+        while (n > 0) {
+            int remainder = n % 2;
+            binary.append(remainder); // Append the remainder (0 or 1)
+            n /= 2;
+        }
+
+        // Since remainders are collected in reverse order, reverse the string
+        return binary.reverse().toString();
+    }
+
+    private static String convertNegativeToBinary(int n) {
+        StringBuilder binary = new StringBuilder();
+        // Extract bits from right to left using bitwise operations
+        for (int i = 31; i >= 0; i--) {
+            int bit = (n >> i) & 1;
+            binary.append(bit);
+        }
+        return binary.toString();
+    }
+}

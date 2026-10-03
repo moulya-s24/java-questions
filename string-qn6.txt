@@ -1,0 +1,49 @@
+      public class StringCharacterCounter {
+    public static void main(String[] args) {
+        String str = "Java 21! Programming @2026";
+
+        countCharacters(str);
+    }
+
+    public static void countCharacters(String str) {
+        if (str == null) {
+            System.out.println("String is null.");
+            return;
+        }
+
+        int vowels = 0;
+        int consonants = 0;
+        int digits = 0;
+        int specialChars = 0;
+
+        // Convert string to lowercase to make vowel checking easier
+        String lowerStr = str.toLowerCase();
+
+        for (int i = 0; i < lowerStr.length(); i++) {
+            char ch = lowerStr.charAt(i);
+
+            // Check if the character is a letter
+            if (ch >= 'a' && ch <= 'z') {
+                if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                    vowels++;
+                } else {
+                    consonants++;
+                }
+            } 
+            // Check if the character is a digit
+            else if (ch >= '0' && ch <= '9') {
+                digits++;
+            } 
+            // Anything else (excluding spaces or counting spaces as special characters)
+            else {
+                specialChars++;
+            }
+        }
+
+        System.out.println("Analysis for string: \"" + str + "\"");
+        System.out.println("Vowels: " + vowels);
+        System.out.println("Consonants: " + consonants);
+        System.out.println("Digits: " + digits);
+        System.out.println("Special characters (including spaces): " + specialChars);
+    }
+}

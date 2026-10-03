@@ -1,0 +1,26 @@
+public class DuplicateRemover {
+    public static void main(String[] args) {
+        int[] arr = {4, 3, 2, 7, 8, 2, 3, 1};
+
+        System.out.print("Array after removing duplicates: ");
+
+        // Loop through each element
+        for (int i = 0; i < arr.length; i++) {
+            boolean isFirstOccurrence = true;
+
+            // Check if this element has appeared earlier in the array
+            for (int j = 0; j < i; j++) {
+                if (arr[j] == arr[i]) {
+                    isFirstOccurrence = false;
+                    break;
+                }
+            }
+
+            // If it's the first time we are seeing this element, print it
+            if (isFirstOccurrence) {
+                System.out.print(arr[i] + " ");
+            }
+        }
+        System.out.println();
+    }
+}

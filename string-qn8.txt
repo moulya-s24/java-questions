@@ -1,0 +1,51 @@
+  public class ArmstrongNumberRange {
+    public static void main(String[] args) {
+        int start = 1;
+        int end = 1000;
+
+        System.out.println("Armstrong numbers between " + start + " and " + end + ":");
+        printArmstrongNumbers(start, end);
+    }
+
+    public static void printArmstrongNumbers(int start, int end) {
+        for (int i = start; i <= end; i++) {
+            if (isArmstrong(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    public static boolean isArmstrong(int n) {
+        if (n < 0) {
+            return false;
+        }
+
+        int original = n;
+        int numDigits = 0;
+
+        // Step 1: Count the number of digits
+        int temp = n;
+        while (temp > 0) {
+            numDigits++;
+            temp /= 10;
+        }
+
+        // If the number is 0, it has 1 digit
+        if (n == 0) {
+            numDigits = 1;
+        }
+
+        // Step 2: Calculate the sum of each digit raised to the power of numDigits
+        int sum = 0;
+        temp = n;
+        while (temp > 0) {
+            int digit = temp % 10;
+            sum += Math.pow(digit, numDigits);
+            temp /= 10;
+        }
+
+        // Step 3: Check if the sum equals the original number
+        return sum == original;
+    }
+}
