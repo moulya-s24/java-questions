@@ -1,0 +1,44 @@
+import java.util.Arrays;
+public class Main {
+   public static void main(String[] args) {
+       Solution solution = new Solution();
+       int[] arr1 = {4, 5, 8};
+       int[] arr2 = {10, 9, 1, 8};
+       int d1 = 2;
+       System.out.println("arr1 = " + Arrays.toString(arr1) + ", arr2 = " + Arrays.toString(arr2) + ", d = " + d1);
+       System.out.println("Distance Value: " + solution.findTheDistanceValue(arr1, arr2, d1) + "\n");
+       int[] arr3 = {1, 4, 2, 3};
+       int[] arr4 = {-4, -3, 6, 10, 20, 30};
+       int d2 = 3;
+       System.out.println("arr1 = " + Arrays.toString(arr3) + ", arr2 = " + Arrays.toString(arr4) + ", d = " + d2);
+       System.out.println("Distance Value: " + solution.findTheDistanceValue(arr3, arr4, d2));
+   }
+}
+class Solution {
+   public int findTheDistanceValue(int[] arr1, int[] arr2, int d) {
+       Arrays.sort(arr2);
+       int distanceValue = 0;
+       for (int val : arr1) {
+           if (isValid(arr2, val, d)) {
+               distanceValue++;
+           }
+       }      
+       return distanceValue;
+   }
+   private boolean isValid(int[] arr2, int val, int d) {
+       int left = 0;
+       int right = arr2.length - 1;    
+       while (left <= right) {
+           int mid = left + (right - left) / 2;
+           if (Math.abs(arr2[mid] - val) <= d) {
+               return false;
+           }      
+           if (arr2[mid] < val) {
+               left = mid + 1;
+           } else {
+               right = mid - 1;
+           }
+       }
+       return true;
+   }
+}
