@@ -1,0 +1,42 @@
+import java.util.Arrays;
+public class Main {
+   public static void main(String[] args) {
+       Solution solution = new Solution();
+       int[][] matrix1 = {
+           {1, 2, 3},
+           {4, 5, 6},
+           {7, 8, 9}
+       };
+       System.out.println("Original Matrix 1:");
+       printMatrix(matrix1);
+       System.out.println("Transposed Matrix 1:");
+       printMatrix(solution.transpose(matrix1));
+       int[][] matrix2 = {
+           {1, 2, 3},
+           {4, 5, 6}
+       };
+       System.out.println("Original Matrix 2:");
+       printMatrix(matrix2);
+       System.out.println("Transposed Matrix 2:");
+       printMatrix(solution.transpose(matrix2));
+   }
+   private static void printMatrix(int[][] matrix) {
+       for (int[] row : matrix) {
+           System.out.println(Arrays.toString(row));
+       }
+       System.out.println();
+   }
+}
+class Solution {
+   public int[][] transpose(int[][] matrix) {
+       int rows = matrix.length;
+       int cols = matrix[0].length;
+       int[][] result = new int[cols][rows];
+       for (int r = 0; r < rows; r++) {
+           for (int c = 0; c < cols; c++) {
+               result[c][r] = matrix[r][c];
+           }
+       }    
+    return result;
+   }
+}
