@@ -1,0 +1,33 @@
+import java.util.Arrays;
+ 
+public class Main {
+   public static void main(String[] args) {
+       Solution solution = new Solution();
+       int[] g1 = {1, 2, 3};
+       int[] s1 = {1, 1};
+       System.out.println("Children greed: " + Arrays.toString(g1) + ", Cookie sizes: " + Arrays.toString(s1));
+       System.out.println("Max content children: " + solution.findContentChildren(g1, s1) + "\n");
+       int[] g2 = {1, 2};
+       int[] s2 = {1, 2, 3};
+       System.out.println("Children greed: " + Arrays.toString(g2) + ", Cookie sizes: " + Arrays.toString(s2));
+       System.out.println("Max content children: " + solution.findContentChildren(g2, s2));
+   }
+}
+ 
+class Solution {
+   public int findContentChildren(int[] g, int[] s) {
+       Arrays.sort(g);
+       Arrays.sort(s);
+       
+       int childPointer = 0;
+       int cookiePointer = 0;
+       
+       while (childPointer < g.length && cookiePointer < s.length) {
+           if (s[cookiePointer] >= g[childPointer]) {
+               childPointer++;
+           }
+           cookiePointer++;
+       }
+       return childPointer;
+   }
+}
