@@ -1,0 +1,31 @@
+import java.util.Arrays;
+ 
+public class Main {
+   public static void main(String[] args) {
+       Solution solution = new Solution();
+       int[] nums1 = {0, 1, 0, 3, 12};
+       System.out.println("Original: " + Arrays.toString(nums1));
+       solution.moveZeroes(nums1);
+       System.out.println("Modified: " + Arrays.toString(nums1) + "\n");
+ 
+       int[] nums2 = {0};
+       System.out.println("Original: " + Arrays.toString(nums2));
+       solution.moveZeroes(nums2);
+       System.out.println("Modified: " + Arrays.toString(nums2));
+   }
+}
+ 
+class Solution {
+   public void moveZeroes(int[] nums) {
+       int lastNonZeroFoundAt = 0;
+               for (int i = 0; i < nums.length; i++) {
+           if (nums[i] != 0) {
+               nums[lastNonZeroFoundAt] = nums[i];
+               lastNonZeroFoundAt++;
+           }
+       }
+       for (int i = lastNonZeroFoundAt; i < nums.length; i++) {
+           nums[i] = 0;
+       }
+   }
+}
