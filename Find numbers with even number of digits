@@ -1,0 +1,20 @@
+import java.util.Arrays;
+public class Main {
+   public static int findNumbers(int[] nums) {
+       int evenDigitCount = 0;
+       
+       for (int num : nums) {
+           int digits = (int) Math.log10(num) + 1;
+           if (digits % 2 == 0) {
+               evenDigitCount++;
+           }
+       }    
+       return evenDigitCount;
+   }    
+   public static void main(String[] args) {
+       int[] nums = {12, 345, 2, 6, 7896};        
+       System.out.println("Input Array: " + Arrays.toString(nums));    
+       int result = findNumbers(nums);      
+       System.out.println("Numbers with an even number of digits: " + result);
+   }
+}
