@@ -1,0 +1,36 @@
+
+import java.util.Arrays;
+public class Main {
+   public static void main(String[] args) {
+       Solution solution = new Solution();
+       int[] heights1 = {1, 1, 4, 2, 1, 3};
+       System.out.println("Heights: " + Arrays.toString(heights1));
+       System.out.println("Indices mismatched: " + solution.heightChecker(heights1) + "\n");
+  int[] heights2 = {1, 2, 3, 4, 5};
+       System.out.println("Heights: " + Arrays.toString(heights2));
+       System.out.println("Indices mismatched: " + solution.heightChecker(heights2) + "\n");
+       int[] heights3 = {5, 4, 3, 2, 1};
+       System.out.println("Heights: " + Arrays.toString(heights3));
+       System.out.println("Indices mismatched: " + solution.heightChecker(heights3));
+   }
+}
+class Solution {
+   public int heightChecker(int[] heights) {
+       int[] count = new int[101];
+       for (int height : heights) {
+           count[height]++;
+       }      
+       int countIndex = 0;
+       int mismatchCount = 0;        
+       for (int i = 0; i < heights.length; i++) {
+           while (count[countIndex] == 0) {
+               countIndex++;
+           }
+           if (heights[i] != countIndex) {
+               mismatchCount++;
+           }
+           count[countIndex]--;
+       }        
+       return mismatchCount;
+   }
+}
